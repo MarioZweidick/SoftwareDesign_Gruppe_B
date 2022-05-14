@@ -42,7 +42,7 @@ public class TileFactory implements GameObjectFactory
 
     private GameObject createWaterTile()
     {
-        return new Bush();
+        return new Water();
     }
 
     private GameObject createGrasTile()
@@ -54,10 +54,10 @@ public class TileFactory implements GameObjectFactory
     public Array<GameObject> createStartObjects(int numberOfTiles)
     {
         Array<GameObject> gameTiles = new Array<>();
-
         gameTiles.addAll(createGrasObjects(numberOfTiles, posX, posY));
+        gameTiles.addAll(createWater(numberOfTiles,posY,posX));
         gameTiles.addAll(createBridgeObjects(NUMBER_OF_BRIDGE_TILES, -32, -32));
-
+        gameTiles.addAll(createBush(posY,posX));
 
         return gameTiles;
     }
@@ -105,4 +105,54 @@ public class TileFactory implements GameObjectFactory
 
         return bridgeTiles;
     }
+
+
+    private Array<GameObject> createWater(int numberOfTiles, int posY, int posX )
+    {
+        Array<GameObject> waterTiles = new Array<>();
+        posY=-32;
+        for (int i = 0; i < 20 ; i++)
+        {
+            GameObject water=createWaterTile();
+            if(i % 10 == 0)
+            {
+                posY+=TILE_SIZE;
+                posX=START_X;
+            }
+
+            water.setPosition(posX, posY);
+            posX+= TILE_SIZE;
+            waterTiles.add(water);
+        }
+        return waterTiles;
+    }
+
+
+    private Array<GameObject> createBush(int posY, int posX )
+    {
+        Array<GameObject> bushTiles = new Array<>();
+        GameObject bushv1= new Bush();
+        GameObject bushv2= new Bush();
+        GameObject bushv3= new Bush();
+        GameObject bushv4= new Bush();
+        GameObject bushv5= new Bush();
+        GameObject bushv6= new Bush();
+        bushv1.setPosition(90, 70);
+        bushv2.setPosition(32, 132);
+        bushv3.setPosition(-90, -30);
+        bushv4.setPosition(-100, -10);
+        bushv5.setPosition(-20, 25);
+        bushv6.setPosition(-10, -80);
+        bushTiles.add(bushv1);
+        bushTiles.add(bushv2);
+        bushTiles.add(bushv3);
+        bushTiles.add(bushv4);
+        bushTiles.add(bushv5);
+        bushTiles.add(bushv6);
+        return bushTiles;
+
+
+
+    }
+
 }
