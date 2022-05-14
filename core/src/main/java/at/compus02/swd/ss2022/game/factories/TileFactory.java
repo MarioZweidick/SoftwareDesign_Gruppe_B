@@ -12,6 +12,9 @@ public class TileFactory implements GameObjectFactory
     private int TILE_SIZE = 32;
     private int START_X = -160;
     private int START_Y = -160;
+    private int posX = START_X;
+    private int posY = START_Y;
+    private int NUMBER_OF_BRIDGE_TILES = 9;
 
 
     private GameObject createBushTile()
@@ -51,8 +54,17 @@ public class TileFactory implements GameObjectFactory
     public Array<GameObject> createStartObjects(int numberOfTiles)
     {
         Array<GameObject> gameTiles = new Array<>();
-        int posX = START_X;
-        int posY = START_Y;
+
+        gameTiles.addAll(createGrasObjects(numberOfTiles, posX, posY));
+        gameTiles.addAll(createBridgeObjects(NUMBER_OF_BRIDGE_TILES, -32, -32));
+
+
+        return gameTiles;
+    }
+
+    private Array<GameObject> createGrasObjects(int numberOfTiles, int posX, int posY)
+    {
+        Array<GameObject> grasTiles = new Array<>();
 
         for (int i = 0; i < numberOfTiles ; i++)
         {
@@ -65,9 +77,32 @@ public class TileFactory implements GameObjectFactory
 
             gras.setPosition(posX, posY);
             posX+= TILE_SIZE;
-            gameTiles.add(gras);
+            grasTiles.add(gras);
         }
 
-        return gameTiles;
+        return grasTiles;
+    }
+
+    private Array<GameObject> createBridgeObjects(int numberOfBridgeTiles, int posX, int posY)
+    {
+        Array<GameObject> bridgeTiles = new Array<>();
+        int startX = posX;
+        int startY = posY;
+
+        for(int i = 0; i < numberOfBridgeTiles; i++)
+        {
+            GameObject bridge = createBridgeTile();
+            if(i % 3 == 0)
+            {
+                posY+=TILE_SIZE;
+                posX=startX;
+            }
+
+            bridge.setPosition(posX, posY);
+            posX+= TILE_SIZE;
+            bridgeTiles.add(bridge);
+        }
+
+        return bridgeTiles;
     }
 }

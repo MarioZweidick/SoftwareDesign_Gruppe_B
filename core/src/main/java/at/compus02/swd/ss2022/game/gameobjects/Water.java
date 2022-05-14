@@ -9,7 +9,7 @@ public class Water implements GameObject {
     private Sprite sprite;
 
     public Water() {
-        image = new Texture("tile_gras.png");
+        image = new Texture("tile_water.png");
         sprite = new Sprite(image);
     }
     @Override
