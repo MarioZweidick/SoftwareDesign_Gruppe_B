@@ -1,5 +1,6 @@
 package at.compus02.swd.ss2022.game;
 
+import at.compus02.swd.ss2022.game.factories.TileFactory;
 import at.compus02.swd.ss2022.game.gameobjects.Bush;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.Sign;
@@ -33,16 +34,8 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
-		Sign sign = new Sign();
-		Bush bush = new Bush();
-		Stone stone = new Stone();
-
-		stone.setPosition(100, 100);
-		bush.setPosition(-50, -70);
-		gameObjects.add(sign);
-		gameObjects.add(stone);
-		gameObjects.add(bush);
-		createBushes(50);
+		TileFactory tileFactory = new TileFactory();
+		gameObjects.addAll(tileFactory.createStartObjects(100));
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
@@ -89,22 +82,4 @@ public class Main extends ApplicationAdapter {
 		viewport.update(width,height);
 	}
 
-	public void createBushes(int numberOfBushes)
-	{
-		int yCor = 0;
-		int xCor = 0;
-		for (int i = 0; i < numberOfBushes; i++)
-		{
-			xCor+=30;
-			Bush bush = new Bush();
-			if((i % 5) == 0)
-			{
-				yCor += 30;
-				xCor = 0;
-			}
-
-			bush.setPosition(-100-xCor, 200-yCor);
-			gameObjects.add(bush);
-		}
-	}
 }
