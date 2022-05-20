@@ -33,10 +33,15 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
+
+		//Build background
 		TileFactory tileFactory = new TileFactory();
 		gameObjects.addAll(tileFactory.createStartObjects(100));
+
+		//Build player
 		PlayerFactory playerFactory = new PlayerFactory();
 		gameObjects.addAll(playerFactory.createStartObjects(100));
+
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);

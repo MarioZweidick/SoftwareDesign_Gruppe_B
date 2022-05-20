@@ -20,7 +20,7 @@ public class TileFactory implements GameObjectFactory
     }
     private GameObject createTulpisTile()
     {
-        return new Tulpis();
+        return new Tulips();
     }
     private GameObject createBridgeTile()
     {
@@ -54,7 +54,7 @@ public class TileFactory implements GameObjectFactory
         gameTiles.addAll(createBush());
         gameTiles.addAll(createTulpis());
         gameTiles.addAll(createBush());
-        gameTiles.add(createHouse(85,-148));
+        gameTiles.add(createHouse(-148,85));
         return gameTiles;
     }
 
@@ -82,9 +82,6 @@ public class TileFactory implements GameObjectFactory
     private GameObject createBridgeObjects(int numberOfBridgeTiles, int posX, int posY)
     {
         Array<GameObject> bridgeTiles = new Array<>();
-        int startX = posX;
-        int startY = posY;
-
 
             GameObject bridge = createBridgeTile();
             bridge.setPosition(posX, posY);
@@ -98,9 +95,6 @@ public class TileFactory implements GameObjectFactory
     private GameObject createBridge2Objects(int numberOfBridgeTiles, int posX, int posY)
     {
         Array<GameObject> bridgeTiles = new Array<>();
-        int startX = posX;
-        int startY = posY;
-
 
         GameObject bridge = createBridge2Tile();
         bridge.setPosition(posX, posY);
@@ -157,7 +151,7 @@ public class TileFactory implements GameObjectFactory
     private GameObject createHouse(int posX, int posY)
     {
         GameObject houseTile = createHouseTile();
-        houseTile.setPosition(posY, posX);
+        houseTile.setPosition(posX, posY);
        return houseTile;
     }
 
@@ -169,11 +163,11 @@ public class TileFactory implements GameObjectFactory
         int x=-125;
         for (int i=0;i<5;i++)
         {
-            GameObject bush= new Tulpis();
+            GameObject bush= new Tulips();
             bush.setPosition(x, -125);
             tulpisTiles.add(bush);
 
-            GameObject bush2= new Tulpis();
+            GameObject bush2= new Tulips();
             bush2.setPosition(x, 165);
             tulpisTiles.add(bush2);
 

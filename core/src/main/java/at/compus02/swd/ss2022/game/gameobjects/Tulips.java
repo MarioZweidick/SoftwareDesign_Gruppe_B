@@ -4,11 +4,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Tulpis implements GameObject {
+public class Tulips implements GameObject {
     private Texture image;
     private Sprite sprite;
 
-    public Tulpis() {
+    public Tulips() {
         image = new Texture("tile_tulpis.png");
         sprite = new Sprite(image);
         sprite.setSize(22,22);

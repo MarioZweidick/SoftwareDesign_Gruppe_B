@@ -9,7 +9,7 @@ public class Character implements GameObject {
     private Sprite sprite;
 
     public Character() {
-        image = new Texture("tile_character.png");
+        image = new Texture("character.png");
         sprite = new Sprite(image);
 
     }

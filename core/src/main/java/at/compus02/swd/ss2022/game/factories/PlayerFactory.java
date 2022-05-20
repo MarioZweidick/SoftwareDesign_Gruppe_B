@@ -9,16 +9,16 @@ public class PlayerFactory implements GameObjectFactory {
     Array<GameObject> gameTiles = new Array<>();
 
 
-    private GameObject createDuck() {
+    private GameObject createPlayer() {
         return new Character();
     }
 
     @Override
     public Array<GameObject> createStartObjects(int numberOfTiles)
     {
-        GameObject duck= createDuck();
-        duck.setPosition(50,100);
-        gameTiles.add(duck);
+        GameObject player= createPlayer();
+        player.setPosition(50,100);
+        gameTiles.add(player);
    return gameTiles;
     }
 
