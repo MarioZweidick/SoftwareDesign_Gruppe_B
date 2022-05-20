@@ -4,12 +4,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Route implements GameObject {
+public class House implements GameObject {
     private Texture image;
     private Sprite sprite;
 
-    public Route() {
-        image = new Texture("tile_gravel.png");
+    public House() {
+        image = new Texture("tile_house.png");
         sprite = new Sprite(image);
     }
     @Override

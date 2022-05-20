@@ -11,6 +11,7 @@ public class Gras implements GameObject {
     public Gras() {
         image = new Texture("tile_gras.png");
         sprite = new Sprite(image);
+
     }
     @Override
     public void act(float delta) {

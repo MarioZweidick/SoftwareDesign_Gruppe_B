@@ -9,8 +9,9 @@ public class Bridge implements GameObject {
     private Sprite sprite;
 
     public Bridge() {
-        image = new Texture("tile_wall.png");
+        image = new Texture("tile_bridge.png");
         sprite = new Sprite(image);
+sprite.setSize(40,90);
     }
     @Override
     public void act(float delta) {

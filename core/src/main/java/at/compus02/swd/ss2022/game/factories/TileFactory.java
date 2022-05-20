@@ -4,9 +4,6 @@ import at.compus02.swd.ss2022.game.factories.interfaces.GameObjectFactory;
 import at.compus02.swd.ss2022.game.gameobjects.*;
 import com.badlogic.gdx.utils.Array;
 
-
-import java.util.ArrayList;
-
 public class TileFactory implements GameObjectFactory
 {
     private int TILE_SIZE = 32;
@@ -21,30 +18,26 @@ public class TileFactory implements GameObjectFactory
     {
         return new Bush();
     }
-
+    private GameObject createTulpisTile()
+    {
+        return new Tulpis();
+    }
     private GameObject createBridgeTile()
+    {
+        return new Jetty();
+    }
+    private GameObject createHouseTile()
+    {
+        return new House();
+    }
+    private GameObject createBridge2Tile()
     {
         return new Bridge();
     }
-
-    private GameObject createRouteTile()
-    {
-        return new Route();
-    }
-    private GameObject createSignTile()
-    {
-        return new Sign();
-    }
-    private GameObject createStoneTile()
-    {
-        return new Stone();
-    }
-
     private GameObject createWaterTile()
     {
         return new Water();
     }
-
     private GameObject createGrasTile()
     {
         return new Gras();
@@ -56,9 +49,12 @@ public class TileFactory implements GameObjectFactory
         Array<GameObject> gameTiles = new Array<>();
         gameTiles.addAll(createGrasObjects(numberOfTiles, posX, posY));
         gameTiles.addAll(createWater(numberOfTiles,posY,posX));
-        gameTiles.addAll(createBridgeObjects(NUMBER_OF_BRIDGE_TILES, -32, -32));
-        gameTiles.addAll(createBush(posY,posX));
-
+        gameTiles.addAll(createBridgeObjects(NUMBER_OF_BRIDGE_TILES, 103, 3));
+        gameTiles.addAll(createBridge2Objects(NUMBER_OF_BRIDGE_TILES, 20, -10));
+        gameTiles.addAll(createBush());
+        gameTiles.addAll(createTulpis());
+        gameTiles.addAll(createBush());
+        gameTiles.add(createHouse(85,-148));
         return gameTiles;
     }
 
@@ -83,27 +79,36 @@ public class TileFactory implements GameObjectFactory
         return grasTiles;
     }
 
-    private Array<GameObject> createBridgeObjects(int numberOfBridgeTiles, int posX, int posY)
+    private GameObject createBridgeObjects(int numberOfBridgeTiles, int posX, int posY)
     {
         Array<GameObject> bridgeTiles = new Array<>();
         int startX = posX;
         int startY = posY;
 
-        for(int i = 0; i < numberOfBridgeTiles; i++)
-        {
+
             GameObject bridge = createBridgeTile();
-            if(i % 3 == 0)
-            {
-                posY+=TILE_SIZE;
-                posX=startX;
-            }
-
             bridge.setPosition(posX, posY);
-            posX+= TILE_SIZE;
-            bridgeTiles.add(bridge);
-        }
 
-        return bridgeTiles;
+            bridgeTiles.add(bridge);
+
+
+        return bridge;
+    }
+
+    private GameObject createBridge2Objects(int numberOfBridgeTiles, int posX, int posY)
+    {
+        Array<GameObject> bridgeTiles = new Array<>();
+        int startX = posX;
+        int startY = posY;
+
+
+        GameObject bridge = createBridge2Tile();
+        bridge.setPosition(posX, posY);
+
+        bridgeTiles.add(bridge);
+
+
+        return bridge;
     }
 
 
@@ -128,31 +133,54 @@ public class TileFactory implements GameObjectFactory
     }
 
 
-    private Array<GameObject> createBush(int posY, int posX )
+    private Array<GameObject> createBush()
     {
         Array<GameObject> bushTiles = new Array<>();
-        GameObject bushv1= new Bush();
-        GameObject bushv2= new Bush();
-        GameObject bushv3= new Bush();
-        GameObject bushv4= new Bush();
-        GameObject bushv5= new Bush();
-        GameObject bushv6= new Bush();
-        bushv1.setPosition(90, 70);
-        bushv2.setPosition(32, 132);
-        bushv3.setPosition(-90, -30);
-        bushv4.setPosition(-100, -10);
-        bushv5.setPosition(-20, 25);
-        bushv6.setPosition(-10, -80);
-        bushTiles.add(bushv1);
-        bushTiles.add(bushv2);
-        bushTiles.add(bushv3);
-        bushTiles.add(bushv4);
-        bushTiles.add(bushv5);
-        bushTiles.add(bushv6);
+
+        int x=-162;
+        for (int i=0;i<5;i++)
+        {
+            GameObject bush= new Bush();
+            bush.setPosition(x, -130);
+            bushTiles.add(bush);
+
+            GameObject bush2= new Bush();
+            bush2.setPosition(x, 162);
+            bushTiles.add(bush2);
+
+            x=x+64;
+        }
+
         return bushTiles;
+    }
+
+    private GameObject createHouse(int posX, int posY)
+    {
+        GameObject houseTile = createHouseTile();
+        houseTile.setPosition(posY, posX);
+       return houseTile;
+    }
 
 
+    private Array<GameObject> createTulpis()
+    {
+        Array<GameObject> tulpisTiles = new Array<>();
 
+        int x=-125;
+        for (int i=0;i<5;i++)
+        {
+            GameObject bush= new Tulpis();
+            bush.setPosition(x, -125);
+            tulpisTiles.add(bush);
+
+            GameObject bush2= new Tulpis();
+            bush2.setPosition(x, 165);
+            tulpisTiles.add(bush2);
+
+            x=x+64;
+        }
+
+        return tulpisTiles;
     }
 
 }

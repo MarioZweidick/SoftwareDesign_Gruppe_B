@@ -4,13 +4,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Bush implements GameObject {
+public class Tulpis implements GameObject {
     private Texture image;
     private Sprite sprite;
 
-    public Bush() {
-        image = new Texture("tile_bush.png");
+    public Tulpis() {
+        image = new Texture("tile_tulpis.png");
         sprite = new Sprite(image);
+        sprite.setSize(22,22);
+
+
     }
     @Override
     public void act(float delta) {

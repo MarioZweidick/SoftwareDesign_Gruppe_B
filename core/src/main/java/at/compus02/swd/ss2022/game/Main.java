@@ -1,10 +1,9 @@
 package at.compus02.swd.ss2022.game;
 
+import at.compus02.swd.ss2022.game.factories.PlayerFactory;
 import at.compus02.swd.ss2022.game.factories.TileFactory;
 import at.compus02.swd.ss2022.game.gameobjects.Bush;
 import at.compus02.swd.ss2022.game.gameobjects.GameObject;
-import at.compus02.swd.ss2022.game.gameobjects.Sign;
-import at.compus02.swd.ss2022.game.gameobjects.Stone;
 import at.compus02.swd.ss2022.game.input.GameInput;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -36,6 +35,8 @@ public class Main extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		TileFactory tileFactory = new TileFactory();
 		gameObjects.addAll(tileFactory.createStartObjects(100));
+		PlayerFactory playerFactory = new PlayerFactory();
+		gameObjects.addAll(playerFactory.createStartObjects(100));
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		Gdx.input.setInputProcessor(this.gameInput);
@@ -53,8 +54,6 @@ public class Main extends ApplicationAdapter {
 		for(GameObject gameObject : gameObjects) {
 			gameObject.draw(batch);
 		}
-		font.draw(batch, "Hello Game", -220, -220);
-		font.draw(batch, "This is a test", 80, -220);
 		batch.end();
 	}
 
