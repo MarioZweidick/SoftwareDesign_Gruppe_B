@@ -1,4 +1,4 @@
-#Project members:
+# Project members:
 - Anna Murko
 - Michael Pacher
 - Mario Zweidick
