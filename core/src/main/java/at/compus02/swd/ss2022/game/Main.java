@@ -21,7 +21,7 @@ public class Main extends ApplicationAdapter {
 	private SpriteBatch batch;
 
 	private ExtendViewport viewport = new ExtendViewport(480.0f, 480.0f, 480.0f, 480.0f);
-	private GameInput gameInput = new GameInput();
+	//private GameInput gameInput = new GameInput();
 
 	private Array<GameObject> gameObjects = new Array<>();
 
@@ -44,7 +44,7 @@ public class Main extends ApplicationAdapter {
 
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
-		Gdx.input.setInputProcessor(this.gameInput);
+		//Gdx.input.setInputProcessor(this.gameInput);
 	}
 
 	private void act(float delta) {
