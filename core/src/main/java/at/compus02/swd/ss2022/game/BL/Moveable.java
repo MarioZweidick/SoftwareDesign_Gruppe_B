@@ -18,6 +18,7 @@ public class Moveable {
         }
 
         boolean canMove = false;
+
        // float objectX = object.getXPosition();
 
 
