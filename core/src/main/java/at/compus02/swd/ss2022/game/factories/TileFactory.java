@@ -1,8 +1,13 @@
 package at.compus02.swd.ss2022.game.factories;
 
+import at.compus02.swd.ss2022.game.BL.Moveable;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObjectFactory;
 import at.compus02.swd.ss2022.game.gameobjects.*;
 import com.badlogic.gdx.utils.Array;
+
+import java.util.ArrayList;
+
+import static com.badlogic.gdx.utils.JsonValue.ValueType.object;
 
 public class TileFactory implements GameObjectFactory
 {
@@ -47,6 +52,8 @@ public class TileFactory implements GameObjectFactory
     public Array<GameObject> createStartObjects(int numberOfTiles)
     {
         Array<GameObject> gameTiles = new Array<>();
+        Array<GameObject> nonMoveAbleObjects = new Array<>();
+
         gameTiles.addAll(createGrasObjects(numberOfTiles, posX, posY));
         gameTiles.addAll(createWater(numberOfTiles,posY,posX));
         gameTiles.addAll(createBridgeObjects(NUMBER_OF_BRIDGE_TILES, 103, 3));
@@ -55,6 +62,17 @@ public class TileFactory implements GameObjectFactory
         gameTiles.addAll(createTulpis());
         gameTiles.addAll(createBush());
         gameTiles.add(createHouse(-148,85));
+
+        gameTiles.addAll(nonMoveAbleObjects);
+        Moveable.setNonMoveableObjects(nonMoveAbleObjects);
+
+        for (GameObject nonMoveAbleObject : nonMoveAbleObjects) {
+            if(nonMoveAbleObject.isAccessable()){
+                nonMoveAbleObjects.add(nonMoveAbleObject);
+            }
+        }
+
+
         return gameTiles;
     }
 

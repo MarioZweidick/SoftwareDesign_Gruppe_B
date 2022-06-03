@@ -20,7 +20,7 @@ public class PlayerFactory implements GameObjectFactory {
     public Array<GameObject> createStartObjects(int numberOfTiles)
     {
         GameObject player= createPlayer();
-        Gdx.input.setInputProcessor(new GameInput((MoveableObject) player));
+        Gdx.input.setInputProcessor(new GameInput((MoveableObject)player));
         player.setPosition(50,100);
         gameTiles.add(player);
    return gameTiles;

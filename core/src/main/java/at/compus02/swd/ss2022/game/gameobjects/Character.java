@@ -9,6 +9,7 @@ public class Character implements GameObject, MoveableObject {
     private Texture image;
     private Sprite sprite;
 
+
     public Character() {
         image = new Texture("character.png");
         sprite = new Sprite(image);
@@ -17,7 +18,14 @@ public class Character implements GameObject, MoveableObject {
 
     @Override
     public void act(float delta) {
+        //movement muss hier implementiert werden!!
+        //wird von render aufgerufen
+        //translate(-MOVE_RATE * delta, 0);
+    }
 
+    @Override
+    public float getSpriteSize() {
+        return this.sprite.getWidth()/2;
     }
 
     @Override
@@ -32,7 +40,21 @@ public class Character implements GameObject, MoveableObject {
 
     @Override
     public void move(int x, int y) {
-        sprite.translateX(x);
-        sprite.translateY(y);
+        sprite.translateX(x*sprite.getHeight()/2);
+        sprite.translateY(y*sprite.getWidth()/2);
+    }
+
+    @Override
+    public float getXPosition() {
+        return sprite.getX();
+    }
+
+    @Override
+    public float getYPosition() {
+        return sprite.getY();
+    }
+    @Override
+    public boolean isAccessable() {
+        return true;
     }
 }

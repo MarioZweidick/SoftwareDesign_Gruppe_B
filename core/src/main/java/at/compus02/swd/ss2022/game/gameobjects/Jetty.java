@@ -27,4 +27,18 @@ public class Jetty implements GameObject {
     public void draw(SpriteBatch batch) {
         sprite.draw(batch);
     }
+
+    @Override
+    public float getXPosition() {
+        return sprite.getX();
+    }
+
+    @Override
+    public float getYPosition() {
+        return sprite.getY();
+    }
+    @Override
+    public boolean isAccessable() {
+        return false;
+    }
 }

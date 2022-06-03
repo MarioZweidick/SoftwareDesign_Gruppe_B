@@ -11,11 +11,10 @@ public class Bridge implements GameObject {
     public Bridge() {
         image = new Texture("tile_bridge.png");
         sprite = new Sprite(image);
-sprite.setSize(40,90);
+        sprite.setSize(40,90);
     }
     @Override
     public void act(float delta) {
-
     }
 
     @Override
@@ -26,5 +25,20 @@ sprite.setSize(40,90);
     @Override
     public void draw(SpriteBatch batch) {
         sprite.draw(batch);
+    }
+
+    @Override
+    public float getXPosition() {
+        return sprite.getX();
+    }
+
+    @Override
+    public float getYPosition() {
+        return sprite.getY();
+    }
+
+    @Override
+    public boolean isAccessable() {
+        return true;
     }
 }

@@ -34,6 +34,8 @@ public class Main extends ApplicationAdapter {
 	public void create() {
 		batch = new SpriteBatch();
 
+
+
 		//Build background
 		TileFactory tileFactory = new TileFactory();
 		gameObjects.addAll(tileFactory.createStartObjects(100));
@@ -44,6 +46,11 @@ public class Main extends ApplicationAdapter {
 
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
+
+		Bush bush = new Bush();
+		bush.setPosition(0,0);
+		gameObjects.add(bush);
+
 		//Gdx.input.setInputProcessor(this.gameInput);
 	}
 
