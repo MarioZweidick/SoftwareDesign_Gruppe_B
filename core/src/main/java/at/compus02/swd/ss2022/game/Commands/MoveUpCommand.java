@@ -1,8 +1,9 @@
 package at.compus02.swd.ss2022.game.Commands;
 
+import at.compus02.swd.ss2022.game.BL.Moveable;
 import at.compus02.swd.ss2022.game.factories.interfaces.ICommand;
 import at.compus02.swd.ss2022.game.factories.interfaces.MoveableObject;
-import at.compus02.swd.ss2022.game.gameobjects.GameObject;
+import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
 
 public class MoveUpCommand implements ICommand {
 
@@ -14,6 +15,10 @@ public class MoveUpCommand implements ICommand {
 
     @Override
     public void execute() {
-        object.move(0,1);
+        float nextPosition = ((GameObject)object).getYPosition() + object.getSpriteSize();
+        float xPosition = ((GameObject)object).getXPosition();
+        if(Moveable.canMove(xPosition,nextPosition)){
+            object.move(0,1);
+        }
     }
 }

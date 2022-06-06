@@ -5,28 +5,24 @@ import at.compus02.swd.ss2022.game.Commands.MoveLeftCommand;
 import at.compus02.swd.ss2022.game.Commands.MoveRightCommand;
 import at.compus02.swd.ss2022.game.Commands.MoveUpCommand;
 import at.compus02.swd.ss2022.game.factories.interfaces.MoveableObject;
-import at.compus02.swd.ss2022.game.gameobjects.GameObject;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 
 public class GameInput extends InputAdapter {
-
     private MoveDownCommand downCommand;
     private MoveUpCommand upCommand;
     private MoveRightCommand rightCommand;
     private MoveLeftCommand leftCommand;
-
     public GameInput(MoveableObject gameObject) {
         downCommand = new MoveDownCommand(gameObject);
         upCommand = new MoveUpCommand(gameObject);
         rightCommand = new MoveRightCommand(gameObject);
         leftCommand = new MoveLeftCommand(gameObject);
     }
-
     @Override
     public boolean keyDown(int keycode) {
-        if(Gdx.input.isKeyJustPressed(Input.Keys.DPAD_RIGHT)){
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_RIGHT)){
             rightCommand.execute();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)){

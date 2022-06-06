@@ -2,16 +2,12 @@ package at.compus02.swd.ss2022.game;
 
 import at.compus02.swd.ss2022.game.factories.PlayerFactory;
 import at.compus02.swd.ss2022.game.factories.TileFactory;
-import at.compus02.swd.ss2022.game.gameobjects.Bush;
-import at.compus02.swd.ss2022.game.gameobjects.GameObject;
-import at.compus02.swd.ss2022.game.input.GameInput;
+import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
@@ -19,12 +15,8 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends ApplicationAdapter {
 	private SpriteBatch batch;
-
 	private ExtendViewport viewport = new ExtendViewport(480.0f, 480.0f, 480.0f, 480.0f);
-	//private GameInput gameInput = new GameInput();
-
 	private Array<GameObject> gameObjects = new Array<>();
-
 	private final float updatesPerSecond = 60;
 	private final float logicFrameTime = 1 / updatesPerSecond;
 	private float deltaAccumulator = 0;
@@ -33,8 +25,6 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
-
-
 
 		//Build background
 		TileFactory tileFactory = new TileFactory();
@@ -46,12 +36,6 @@ public class Main extends ApplicationAdapter {
 
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
-
-		Bush bush = new Bush();
-		bush.setPosition(0,0);
-		gameObjects.add(bush);
-
-		//Gdx.input.setInputProcessor(this.gameInput);
 	}
 
 	private void act(float delta) {
