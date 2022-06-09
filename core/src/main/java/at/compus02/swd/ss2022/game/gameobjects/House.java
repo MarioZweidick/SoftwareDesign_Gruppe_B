@@ -1,16 +1,17 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
+import at.compus02.swd.ss2022.game.Repository.AssetRepository;
+import at.compus02.swd.ss2022.game.Repository.Tile;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class House implements GameObject {
-    private Texture image;
     private Sprite sprite;
 
     public House() {
-        image = new Texture("tile_house.png");
+        Texture image = AssetRepository.getInstance().getTexture(Tile.House);
         sprite = new Sprite(image);
     }
     @Override
@@ -34,7 +35,7 @@ public class House implements GameObject {
         return sprite.getY();
     }
     @Override
-    public boolean isAccessable() {
+    public boolean isAccessible() {
         return false;
     }
     @Override

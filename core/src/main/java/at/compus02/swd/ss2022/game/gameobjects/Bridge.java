@@ -1,16 +1,17 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
+import at.compus02.swd.ss2022.game.Repository.AssetRepository;
+import at.compus02.swd.ss2022.game.Repository.Tile;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Bridge implements GameObject {
-    private Texture image;
     private Sprite sprite;
 
     public Bridge() {
-        image = new Texture("tile_bridge.png");
+        Texture image = AssetRepository.getInstance().getTexture(Tile.Bridge);
         sprite = new Sprite(image);
         sprite.setSize(40,90);
     }
@@ -35,7 +36,7 @@ public class Bridge implements GameObject {
         return sprite.getY();
     }
     @Override
-    public boolean isAccessable() {return true; }
+    public boolean isAccessible() {return true; }
     @Override
     public float getSpriteWidth() {
         return sprite.getWidth()/2;

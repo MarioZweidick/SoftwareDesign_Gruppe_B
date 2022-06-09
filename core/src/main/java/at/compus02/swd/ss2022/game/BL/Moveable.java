@@ -35,7 +35,7 @@ public class Moveable {
                 System.out.println("Position x:"+width+" Position y:"+height);
                 System.out.println("---------------");
 
-                canMove = noneMovableObject.isAccessable();
+                canMove = noneMovableObject.isAccessible();
             }
         }
         return canMove;

@@ -1,17 +1,23 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
+import at.compus02.swd.ss2022.game.Repository.AssetRepository;
+import at.compus02.swd.ss2022.game.Repository.Tile;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Bush implements GameObject {
-    private Texture image;
+
     private Sprite sprite;
 
     public Bush() {
-        image = new Texture("tile_bush.png");
+        Texture image = AssetRepository.getInstance().getTexture(Tile.Bush);
         sprite = new Sprite(image);
+    }
+
+    public void animation(){
+
     }
     @Override
     public void act(float delta) {
@@ -34,7 +40,7 @@ public class Bush implements GameObject {
         return sprite.getY();
     }
     @Override
-    public boolean isAccessable() {
+    public boolean isAccessible() {
         return false;
     }
     @Override

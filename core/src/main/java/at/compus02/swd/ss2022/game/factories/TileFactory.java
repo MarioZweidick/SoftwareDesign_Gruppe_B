@@ -23,7 +23,7 @@ public class TileFactory implements GameObjectFactory
     {
         return new Tulips();
     }
-    private GameObject createBridgeTile()
+    private GameObject createJettyTile()
     {
         return new Jetty();
     }
@@ -31,7 +31,7 @@ public class TileFactory implements GameObjectFactory
     {
         return new House();
     }
-    private GameObject createBridge2Tile()
+    private GameObject createBridgeTile()
     {
         return new Bridge();
     }
@@ -51,8 +51,8 @@ public class TileFactory implements GameObjectFactory
         gameTiles.addAll(createGrasObjects(40, posX, posY));
         gameTiles.addAll(createWater(posY,posX));
         gameTiles.addAll(createGrasObjects(40, posX , posY+ TILE_SIZE*6));
-        gameTiles.addAll(createBridgeObjects(103, 3));
-        gameTiles.addAll(createBridge2Objects(20, -10));
+        gameTiles.addAll(createJettyObjects(103, 3));
+        gameTiles.addAll(createBridgeObjects(20, -10));
         gameTiles.add(createHouse(-148,85));
         gameTiles.addAll(createTulpis());
 
@@ -83,16 +83,16 @@ public class TileFactory implements GameObjectFactory
         return grasTiles;
     }
 
-    private GameObject createBridgeObjects(int posX, int posY)
+    private GameObject createJettyObjects(int posX, int posY)
     {
-        GameObject bridge = createBridgeTile();
+        GameObject bridge = createJettyTile();
         bridge.setPosition(posX, posY);
         return bridge;
     }
 
-    private GameObject createBridge2Objects(int posX, int posY)
+    private GameObject createBridgeObjects(int posX, int posY)
     {
-        GameObject bridge = createBridge2Tile();
+        GameObject bridge = createBridgeTile();
         bridge.setPosition(posX, posY);
         return bridge;
     }

@@ -1,8 +1,10 @@
 package at.compus02.swd.ss2022.game;
 
+import at.compus02.swd.ss2022.game.Repository.AssetRepository;
 import at.compus02.swd.ss2022.game.factories.PlayerFactory;
 import at.compus02.swd.ss2022.game.factories.TileFactory;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.Bush;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -26,6 +28,9 @@ public class Main extends ApplicationAdapter {
 	public void create() {
 		batch = new SpriteBatch();
 
+		//Texturen laden
+		AssetRepository.getInstance().preloadAssets();
+
 		//Build background
 		TileFactory tileFactory = new TileFactory();
 		gameObjects.addAll(tileFactory.createStartObjects(100));
@@ -34,6 +39,10 @@ public class Main extends ApplicationAdapter {
 		PlayerFactory playerFactory = new PlayerFactory();
 		gameObjects.addAll(playerFactory.createStartObjects(100));
 
+		Bush bush = new Bush();
+		bush.setPosition(-110,80);
+		bush.animation();
+		gameObjects.add(bush);
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 	}
@@ -69,6 +78,7 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void dispose() {
+		AssetRepository.getInstance().dispose();
 		batch.dispose();
 	}
 

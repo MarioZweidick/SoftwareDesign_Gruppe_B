@@ -1,16 +1,17 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
+import at.compus02.swd.ss2022.game.Repository.AssetRepository;
+import at.compus02.swd.ss2022.game.Repository.Tile;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Tulips implements GameObject {
-    private Texture image;
     private Sprite sprite;
 
     public Tulips() {
-        image = new Texture("tile_tulpis.png");
+        Texture image = AssetRepository.getInstance().getTexture(Tile.Tulips);
         sprite = new Sprite(image);
         sprite.setSize(22,22);
     }
@@ -35,7 +36,7 @@ public class Tulips implements GameObject {
         return sprite.getY();
     }
     @Override
-    public boolean isAccessable() {
+    public boolean isAccessible() {
         return true;
     }
     @Override

@@ -1,5 +1,7 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
+import at.compus02.swd.ss2022.game.Repository.AssetRepository;
+import at.compus02.swd.ss2022.game.Repository.Tile;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
 import at.compus02.swd.ss2022.game.factories.interfaces.MoveableObject;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,11 +9,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Character implements GameObject, MoveableObject {
-    private Texture image;
     private Sprite sprite;
 
     public Character() {
-        image = new Texture("character.png");
+        Texture image = AssetRepository.getInstance().getTexture(Tile.Character);
         sprite = new Sprite(image);
     }
     @Override
@@ -44,7 +45,7 @@ public class Character implements GameObject, MoveableObject {
         return sprite.getY();
     }
     @Override
-    public boolean isAccessable() {
+    public boolean isAccessible() {
         return true;
     }
     @Override

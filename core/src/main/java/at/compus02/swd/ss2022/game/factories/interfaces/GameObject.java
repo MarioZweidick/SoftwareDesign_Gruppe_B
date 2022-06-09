@@ -10,5 +10,5 @@ public interface GameObject {
     float getYPosition();
     float getSpriteWidth();
     float getSpriteHeight();
-    boolean isAccessable();
+    boolean isAccessible();
 }
