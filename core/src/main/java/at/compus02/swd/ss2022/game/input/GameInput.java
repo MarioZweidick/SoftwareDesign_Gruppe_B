@@ -1,9 +1,9 @@
 package at.compus02.swd.ss2022.game.input;
 
-import at.compus02.swd.ss2022.game.commands.MoveDownCommand;
-import at.compus02.swd.ss2022.game.commands.MoveLeftCommand;
-import at.compus02.swd.ss2022.game.commands.MoveRightCommand;
-import at.compus02.swd.ss2022.game.commands.MoveUpCommand;
+import at.compus02.swd.ss2022.game.Commands.MoveDownCommand;
+import at.compus02.swd.ss2022.game.Commands.MoveLeftCommand;
+import at.compus02.swd.ss2022.game.Commands.MoveRightCommand;
+import at.compus02.swd.ss2022.game.Commands.MoveUpCommand;
 import at.compus02.swd.ss2022.game.factories.interfaces.MoveableObject;
 import at.compus02.swd.ss2022.game.observer.ConsoleObserver;
 import at.compus02.swd.ss2022.game.observer.LogFileObserver;
@@ -12,22 +12,15 @@ import at.compus02.swd.ss2022.game.observer.interfaces.GameObserver;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-
 import java.util.ArrayList;
 
 public class GameInput extends InputAdapter implements GameObservable
 {
-    private MoveDownCommand downCommand;
-    private MoveUpCommand upCommand;
-    private MoveRightCommand rightCommand;
-    private MoveLeftCommand leftCommand;
-
-    private ArrayList<GameObserver> observers;
-
-    //Observers
-    private String path = "C:\\Users\\mario\\IdeaProjects\\SoftwareDesign_Gruppe_B\\logs\\gamelog.log";
-    LogFileObserver logger ;
-    ConsoleObserver consoleObserver;
+    private final MoveDownCommand downCommand;
+    private final MoveUpCommand upCommand;
+    private final MoveRightCommand rightCommand;
+    private final MoveLeftCommand leftCommand;
+    private final ArrayList<GameObserver> observers;
 
     public GameInput(MoveableObject gameObject) {
         this.downCommand = new MoveDownCommand(gameObject);
@@ -35,11 +28,9 @@ public class GameInput extends InputAdapter implements GameObservable
         this.rightCommand = new MoveRightCommand(gameObject);
         this.leftCommand = new MoveLeftCommand(gameObject);
         this.observers = new ArrayList<>();
-        this.logger = new LogFileObserver(path);
-        this.consoleObserver = new ConsoleObserver();
 
-        registerObserver(logger);
-        registerObserver(consoleObserver);
+        registerObserver(ConsoleObserver.getInstance());
+        registerObserver(LogFileObserver.GetInstance());
 
         //Write message, once game is started --> GameStart should work
         notifyObserverOnAction(true);

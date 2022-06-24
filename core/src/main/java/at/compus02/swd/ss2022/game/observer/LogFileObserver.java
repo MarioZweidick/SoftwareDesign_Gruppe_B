@@ -2,7 +2,6 @@ package at.compus02.swd.ss2022.game.observer;
 
 import at.compus02.swd.ss2022.game.observer.enums.GameLogLevel;
 import at.compus02.swd.ss2022.game.observer.interfaces.GameObserver;
-import jdk.jfr.internal.LogLevel;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -12,16 +11,16 @@ import java.util.Date;
 public class LogFileObserver implements GameObserver
 {
     //Defined or fixed values;
-    String PLAY_ACTION_SUCCESS = "Player moved";
-    String PLAY_ACTION_FAIL = "Player did not move";
+    private static final LogFileObserver logFileObserver = new LogFileObserver();
+    private final String PLAY_ACTION_SUCCESS = "Player moved";
+    private final String PLAY_ACTION_FAIL = "Player did not move";
+    private final String path;
+    private BufferedWriter writer;
 
-    String path;
-    BufferedWriter writer;
+    private LogFileObserver(){
+        String userDir = System.getProperty("user.dir");
+        path = userDir+"\\logs\\gamelog.log";
 
-
-    public LogFileObserver(String path)
-    {
-        this.path = path;
         try
         {
             this.writer = new BufferedWriter(new FileWriter(path, true));
@@ -31,6 +30,8 @@ public class LogFileObserver implements GameObserver
             e.printStackTrace();
         }
     }
+
+    public static LogFileObserver GetInstance() {return logFileObserver;}
 
     @Override
     public void onPlayerMovedUp(boolean successful)
@@ -80,14 +81,14 @@ public class LogFileObserver implements GameObserver
         writeLogEntry(buildMessage(GameLogLevel.INFO.toString(), message));
     }
 
-    public String buildMessage(String logLevel, String message)
+    private String buildMessage(String logLevel, String message)
     {
         Date date = new Date();
 
         return date.toString() + " | " + logLevel + " | " + message;
     }
 
-    public void writeLogEntry(String builtMessage)
+    private void writeLogEntry(String builtMessage)
     {
         try
         {

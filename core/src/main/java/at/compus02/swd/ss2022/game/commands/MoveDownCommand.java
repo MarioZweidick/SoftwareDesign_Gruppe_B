@@ -1,4 +1,4 @@
-package at.compus02.swd.ss2022.game.commands;
+package at.compus02.swd.ss2022.game.Commands;
 import at.compus02.swd.ss2022.game.BL.Moveable;
 import at.compus02.swd.ss2022.game.factories.interfaces.ICommand;
 import at.compus02.swd.ss2022.game.factories.interfaces.MoveableObject;
@@ -15,19 +15,12 @@ public class MoveDownCommand implements ICommand, GameObservable
     private MoveableObject object;
     private ArrayList<GameObserver> observers;
 
-    //Observers
-    private String path = "C:\\Users\\mario\\IdeaProjects\\SoftwareDesign_Gruppe_B\\logs\\gamelog.log";
-    LogFileObserver logger ;
-    ConsoleObserver consoleObserver;
-
     public MoveDownCommand(MoveableObject object) {
         this.object = object;
         this.observers = new ArrayList<>();
-        this.logger = new LogFileObserver(path);
-        this.consoleObserver = new ConsoleObserver();
 
-        registerObserver(logger);
-        registerObserver(consoleObserver);
+        registerObserver(ConsoleObserver.getInstance());
+        registerObserver(LogFileObserver.GetInstance());
     }
 
     @Override

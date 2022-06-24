@@ -8,8 +8,12 @@ import java.util.Date;
 public class ConsoleObserver implements GameObserver
 {
     //Defined or fixed values;
-    String PLAY_ACTION_SUCCESS = "Player moved";
-    String PLAY_ACTION_FAIL = "Player did not move";
+    private final String PLAY_ACTION_SUCCESS = "Player moved";
+    private final String PLAY_ACTION_FAIL = "Player did not move";
+    private static ConsoleObserver consoleObserver = new ConsoleObserver();
+    private ConsoleObserver(){}
+
+    public static ConsoleObserver getInstance(){return consoleObserver;}
 
     @Override
     public void onPlayerMovedUp(boolean successful)
@@ -59,7 +63,7 @@ public class ConsoleObserver implements GameObserver
         System.out.println(buildMessage(message));
     }
 
-    public String buildMessage(String message)
+    private String buildMessage(String message)
     {
         Date date = new Date();
 
