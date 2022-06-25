@@ -16,9 +16,6 @@ public class Bush implements GameObject {
         sprite = new Sprite(image);
     }
 
-    public void animation(){
-
-    }
     @Override
     public void act(float delta) {
 

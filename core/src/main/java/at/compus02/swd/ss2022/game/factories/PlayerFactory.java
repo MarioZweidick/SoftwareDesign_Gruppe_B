@@ -9,7 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
 public class PlayerFactory implements GameObjectFactory {
-    Array<GameObject> gameTiles = new Array<>();
+    private Array<GameObject> gameTiles = new Array<>();
     private GameObject createPlayer() {
         return new Character();
     }

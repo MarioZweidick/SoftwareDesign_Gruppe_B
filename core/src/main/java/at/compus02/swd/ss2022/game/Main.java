@@ -39,10 +39,6 @@ public class Main extends ApplicationAdapter {
 		PlayerFactory playerFactory = new PlayerFactory();
 		gameObjects.addAll(playerFactory.createStartObjects(100));
 
-		Bush bush = new Bush();
-		bush.setPosition(-110,80);
-		bush.animation();
-		gameObjects.add(bush);
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
 	}
