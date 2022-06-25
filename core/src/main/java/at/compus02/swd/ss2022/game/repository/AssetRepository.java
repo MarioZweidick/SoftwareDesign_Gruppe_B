@@ -1,4 +1,4 @@
-package at.compus02.swd.ss2022.game.Repository;
+package at.compus02.swd.ss2022.game.repository;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;

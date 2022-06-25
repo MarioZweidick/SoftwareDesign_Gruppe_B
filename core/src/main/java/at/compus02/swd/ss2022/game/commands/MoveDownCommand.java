@@ -1,5 +1,5 @@
-package at.compus02.swd.ss2022.game.Commands;
-import at.compus02.swd.ss2022.game.BL.Moveable;
+package at.compus02.swd.ss2022.game.commands;
+import at.compus02.swd.ss2022.game.bl.Moveable;
 import at.compus02.swd.ss2022.game.factories.interfaces.ICommand;
 import at.compus02.swd.ss2022.game.factories.interfaces.MoveableObject;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;

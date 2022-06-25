@@ -1,4 +1,4 @@
-package at.compus02.swd.ss2022.game.Commands;
+package at.compus02.swd.ss2022.game.commands;
 
 import at.compus02.swd.ss2022.game.factories.interfaces.ICommand;
 

@@ -1,4 +1,4 @@
-package at.compus02.swd.ss2022.game.BL;
+package at.compus02.swd.ss2022.game.bl;
 
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
 import com.badlogic.gdx.utils.Array;
@@ -36,6 +36,8 @@ public class Moveable {
                 System.out.println("---------------");
 
                 canMove = noneMovableObject.isAccessible();
+
+
             }
         }
         return canMove;

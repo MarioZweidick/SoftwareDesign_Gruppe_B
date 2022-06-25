@@ -1,9 +1,9 @@
 package at.compus02.swd.ss2022.game.input;
 
-import at.compus02.swd.ss2022.game.Commands.MoveDownCommand;
-import at.compus02.swd.ss2022.game.Commands.MoveLeftCommand;
-import at.compus02.swd.ss2022.game.Commands.MoveRightCommand;
-import at.compus02.swd.ss2022.game.Commands.MoveUpCommand;
+import at.compus02.swd.ss2022.game.commands.MoveDownCommand;
+import at.compus02.swd.ss2022.game.commands.MoveLeftCommand;
+import at.compus02.swd.ss2022.game.commands.MoveRightCommand;
+import at.compus02.swd.ss2022.game.commands.MoveUpCommand;
 import at.compus02.swd.ss2022.game.factories.interfaces.MoveableObject;
 import at.compus02.swd.ss2022.game.observer.ConsoleObserver;
 import at.compus02.swd.ss2022.game.observer.LogFileObserver;

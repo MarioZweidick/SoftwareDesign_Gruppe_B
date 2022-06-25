@@ -1,4 +1,4 @@
-package at.compus02.swd.ss2022.game.Repository;
+package at.compus02.swd.ss2022.game.repository;
 
 public class Pair<F,S> {
     private F first;

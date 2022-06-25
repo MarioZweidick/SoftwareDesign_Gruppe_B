@@ -1,6 +1,6 @@
 package at.compus02.swd.ss2022.game.factories;
 
-import at.compus02.swd.ss2022.game.BL.Moveable;
+import at.compus02.swd.ss2022.game.bl.Moveable;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObjectFactory;
 import at.compus02.swd.ss2022.game.gameobjects.*;
