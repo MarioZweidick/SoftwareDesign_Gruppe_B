@@ -23,11 +23,17 @@ public class AssetRepository {
         textures.add(new Pair<>(Tile.CharacterDown, new Texture("character1/characterDown.png")));
         textures.add(new Pair<>(Tile.CharacterLeft, new Texture("character1/characterLeft.png")));
         textures.add(new Pair<>(Tile.CharacterRight, new Texture("character1/characterRight.png")));
-        //Enemy
-        textures.add(new Pair<>(Tile.EnemyUp, new Texture("monster1/monster1Up.png")));
-        textures.add(new Pair<>(Tile.EnemyDown, new Texture("monster1/monster1Down.png")));
-        textures.add(new Pair<>(Tile.EnemyLeft, new Texture("monster1/monster1Left.png")));
-        textures.add(new Pair<>(Tile.EnemyRight, new Texture("monster1/monster1Right.png")));
+        //EnemyRed
+        textures.add(new Pair<>(Tile.EnemyRedUp, new Texture("monster1/monster1Up.png")));
+        textures.add(new Pair<>(Tile.EnemyRedDown, new Texture("monster1/monster1Down.png")));
+        textures.add(new Pair<>(Tile.EnemyRedLeft, new Texture("monster1/monster1Left.png")));
+        textures.add(new Pair<>(Tile.EnemyRedRight, new Texture("monster1/monster1Right.png")));
+
+        //EnemyGreen
+        textures.add(new Pair<>(Tile.EnemyGreenUp, new Texture("monster2/monster2Up.png")));
+        textures.add(new Pair<>(Tile.EnemyGreenDown, new Texture("monster2/monster2Down.png")));
+        textures.add(new Pair<>(Tile.EnemyGreenLeft, new Texture("monster2/monster2Left.png")));
+        textures.add(new Pair<>(Tile.EnemyGreenRight, new Texture("monster2/monster2Right.png")));
     }
     public Texture getTexture(Tile texture){
         for (Pair<Tile, Texture> texturePair : textures) {

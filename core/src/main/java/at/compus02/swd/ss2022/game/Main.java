@@ -1,9 +1,12 @@
 package at.compus02.swd.ss2022.game;
 
+import at.compus02.swd.ss2022.game.factories.EnemyFactory;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
+import at.compus02.swd.ss2022.game.input.GameInput;
 import at.compus02.swd.ss2022.game.repository.AssetRepository;
 import at.compus02.swd.ss2022.game.factories.PlayerFactory;
 import at.compus02.swd.ss2022.game.factories.TileFactory;
-import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -34,9 +37,17 @@ public class Main extends ApplicationAdapter {
 		TileFactory tileFactory = new TileFactory();
 		gameObjects.addAll(tileFactory.createStartObjects(100));
 
+		//Build enemies
+		EnemyFactory enemyFactory = new EnemyFactory();
+		Array<GameObject> enemies = enemyFactory.createStartObjects(0);
+		gameObjects.addAll(enemies);
+
 		//Build player
 		PlayerFactory playerFactory = new PlayerFactory();
-		gameObjects.addAll(playerFactory.createStartObjects(100));
+		Array player = playerFactory.createStartObjects(0);
+		Gdx.input.setInputProcessor(new GameInput((MoveableObject)player.first(),enemies));
+
+		gameObjects.addAll(player);
 
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);

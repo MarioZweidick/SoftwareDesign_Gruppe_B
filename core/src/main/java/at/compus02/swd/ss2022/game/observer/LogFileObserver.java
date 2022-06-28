@@ -31,7 +31,7 @@ public class LogFileObserver implements GameObserver
         }
     }
 
-    public static LogFileObserver GetInstance() {return logFileObserver;}
+    public static LogFileObserver getInstance() {return logFileObserver;}
 
     @Override
     public void onPlayerMovedUp(boolean successful)

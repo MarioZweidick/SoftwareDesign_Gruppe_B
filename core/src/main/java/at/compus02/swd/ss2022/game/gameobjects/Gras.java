@@ -2,7 +2,7 @@ package at.compus02.swd.ss2022.game.gameobjects;
 
 import at.compus02.swd.ss2022.game.repository.AssetRepository;
 import at.compus02.swd.ss2022.game.repository.Tile;
-import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

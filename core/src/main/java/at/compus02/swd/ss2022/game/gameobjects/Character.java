@@ -1,22 +1,27 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.IFighting;
 import at.compus02.swd.ss2022.game.repository.AssetRepository;
 import at.compus02.swd.ss2022.game.repository.Tile;
-import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
-import at.compus02.swd.ss2022.game.factories.interfaces.MoveableObject;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
 import at.compus02.swd.ss2022.game.movement.Direction;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Character implements GameObject, MoveableObject {
+public class Character implements GameObject, MoveableObject, IFighting {
     private Sprite sprite;
     private Direction direction;
+    private AssetRepository repository;
+    private float health;
+    private float attackstrength;
 
     public Character() {
         Texture image = AssetRepository.getInstance().getTexture(Tile.CharacterDown);
         sprite = new Sprite(image);
         direction = Direction.DOWN;
+        repository = AssetRepository.getInstance();
     }
     @Override
     public void act(float delta) {
@@ -35,23 +40,20 @@ public class Character implements GameObject, MoveableObject {
         sprite.draw(batch);
     }
     @Override
-    public void moveUp(int x) {
-        sprite.translateX(x*sprite.getHeight()/3);
-    }
-    @Override
-    public void moveDown(int x) {
-        sprite.translateX(x*sprite.getHeight()/3);
-    }
-    @Override
-    public void moveLeft(int y) {
-        sprite.translateY(y*sprite.getWidth()/3);
-    }
-    @Override
-    public void moveRight(int y) {
-        sprite.translateY(y*sprite.getWidth()/3);
-    }
-    @Override
     public Direction getDirection() {return direction; }
+    @Override
+    public void setDirection(Direction direction) {this.direction = direction;}
+    @Override
+    public MoveableGameObjects getGameObjectType() {
+        return MoveableGameObjects.Character;
+    }
+
+    @Override
+    public void setSprite(Sprite sprite) {
+        sprite.setPosition(getXPosition(),getYPosition());
+        this.sprite= sprite;
+    }
+
     @Override
     public float getXPosition() {
         return sprite.getX();
@@ -72,4 +74,14 @@ public class Character implements GameObject, MoveableObject {
     public float getSpriteHeight() {
         return sprite.getHeight();
     }
+
+
+    @Override
+    public float getHealth() {return this.health;}
+    @Override
+    public void setHealth(float health) {this.health = health;}
+    @Override
+    public float getAttackstrength() {return attackstrength;}
+    @Override
+    public void setAttackstrength(float strength) {attackstrength = strength;}
 }

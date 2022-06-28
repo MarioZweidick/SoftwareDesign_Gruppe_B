@@ -1,7 +1,7 @@
 package at.compus02.swd.ss2022.game.factories;
 
 import at.compus02.swd.ss2022.game.bl.Moveable;
-import at.compus02.swd.ss2022.game.factories.interfaces.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObjectFactory;
 import at.compus02.swd.ss2022.game.gameobjects.*;
 import com.badlogic.gdx.utils.Array;
@@ -56,7 +56,7 @@ public class TileFactory implements GameObjectFactory
         gameTiles.add(createHouse(-148,85));
         gameTiles.addAll(createTulpis());
 
-        Moveable.setNonMoveableObjects(gameTiles);
+        Moveable.setNoneMoveableObjects(gameTiles);
 
         gameTiles.addAll(createBush());
         gameTiles.addAll(createBush());
