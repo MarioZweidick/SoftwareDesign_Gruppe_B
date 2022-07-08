@@ -13,7 +13,7 @@ public class EnemyFactory implements GameObjectFactory {
 
     private Array<GameObject> enemies = new Array<>();
 
-    private EnemyGreen createEnemyBlue(){return new EnemyGreen();}
+    private EnemyGreen createEnemyGreen(){return new EnemyGreen();}
     private EnemyRed createEnemyRed(){return new EnemyRed();}
     @Override
     public Array<GameObject> createStartObjects(int numberOfTiles) {
@@ -24,11 +24,10 @@ public class EnemyFactory implements GameObjectFactory {
 
 
 
-        EnemyGreen enemyGreen = createEnemyBlue();
+        EnemyGreen enemyGreen = createEnemyGreen();
         enemyGreen.setPosition(-150,-100);
         //((IFighting)enemyGreen).setHealth(100);
         //((IFighting)enemyGreen).setAttackstrength(100);
-
 
 
         enemies.add(enemyGreen,enemyRed);

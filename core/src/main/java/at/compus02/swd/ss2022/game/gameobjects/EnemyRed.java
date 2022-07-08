@@ -9,14 +9,17 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class EnemyRed implements GameObject, MoveableObject {
+public class EnemyRed implements GameObject, MoveableObject
+{
     private Sprite sprite;
     private Direction direction;
+    private int livePoints;
 
     public EnemyRed(){
         Texture image = AssetRepository.getInstance().getTexture(Tile.EnemyRedDown);
         sprite = new Sprite(image);
         direction = Direction.DOWN;
+        this.livePoints = 300;
     }
 
     @Override
@@ -37,6 +40,13 @@ public class EnemyRed implements GameObject, MoveableObject {
     public void setSprite(Sprite sprite) {
         sprite.setPosition(getXPosition(),getYPosition());
         this.sprite= sprite;
+    }
+
+    public void decreaseLivePoints(int value) {livePoints -= value;}
+
+    public int getLivePoints()
+    {
+        return livePoints;
     }
 
     @Override

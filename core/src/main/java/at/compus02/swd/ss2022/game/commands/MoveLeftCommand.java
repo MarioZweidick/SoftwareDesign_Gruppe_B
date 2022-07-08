@@ -15,6 +15,6 @@ public class MoveLeftCommand implements ICommand {
 
     @Override
     public void execute() {
-        Movement.moveObject(object, Direction.LEFT);
+        Movement.getInstance().moveObject(object, Direction.LEFT);
     }
 }

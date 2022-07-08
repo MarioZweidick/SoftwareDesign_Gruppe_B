@@ -5,6 +5,7 @@ import at.compus02.swd.ss2022.game.bl.EnemyMovement;
 import at.compus02.swd.ss2022.game.commands.*;
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
+import at.compus02.swd.ss2022.game.movement.Direction;
 import at.compus02.swd.ss2022.game.observer.ConsoleObserver;
 import at.compus02.swd.ss2022.game.observer.LogFileObserver;
 import at.compus02.swd.ss2022.game.observer.interfaces.GameObservable;
@@ -16,7 +17,7 @@ import com.badlogic.gdx.utils.Array;
 
 import java.util.ArrayList;
 
-public class GameInput extends InputAdapter implements GameObservable
+public class GameInput extends InputAdapter
 {
     private final MoveDownCommand downCommand;
     private final MoveUpCommand upCommand;
@@ -39,11 +40,7 @@ public class GameInput extends InputAdapter implements GameObservable
         this.enemies.add(enemies.first());
         this.player = player;
 
-        registerObserver(ConsoleObserver.getInstance());
-        registerObserver(LogFileObserver.getInstance());
 
-        //Write message, once game is started --> GameStart should work
-        notifyObserverOnAction(true);
     }
     @Override
     public boolean keyDown(int keycode) {
@@ -74,25 +71,7 @@ public class GameInput extends InputAdapter implements GameObservable
     private void update(){
 
         for (GameObject enemy : enemies){
-            EnemyMovement.MoveEnemyToPlayer(enemy, (GameObject) player);
-        }
-    }
-
-    @Override
-    public void registerObserver(GameObserver observer)
-    {
-        observers.add(observer);
-    }
-
-    @Override
-    public void notifyObserverOnAction(boolean successful)
-    {
-        for (GameObserver observer : observers)
-        {
-            if(successful)
-                observer.atGameStart("------GAME START------");
-            else
-                observer.atGameStart("------ERROR DURING GAME START"); //Ask professor for possible use case
+            //EnemyMovement.MoveEnemyToPlayer(enemy, (GameObject) player);
         }
     }
 

@@ -15,6 +15,6 @@ public class MoveUpCommand implements ICommand {
 
     @Override
     public void execute() {
-        Movement.moveObject(object, Direction.UP);
+        Movement.getInstance().moveObject(object, Direction.UP);
     }
 }

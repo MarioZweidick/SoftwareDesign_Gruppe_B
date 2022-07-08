@@ -1,5 +1,6 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
+
 import at.compus02.swd.ss2022.game.repository.AssetRepository;
 import at.compus02.swd.ss2022.game.repository.Tile;
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
@@ -9,15 +10,27 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class EnemyGreen implements GameObject, MoveableObject {
+public class EnemyGreen implements GameObject, MoveableObject
+{
     private Sprite sprite;
     private Direction direction;
+    private int livePoints;
 
     public EnemyGreen(){
         Texture image = AssetRepository.getInstance().getTexture(Tile.EnemyGreenDown);
         sprite = new Sprite(image);
         direction = Direction.DOWN;
+        this.livePoints = 100;
     }
+
+    public void decreaseLivePoints(int value) {livePoints -= value;}
+
+
+    public int getLivePoints()
+    {
+        return livePoints;
+    }
+
     @Override
     public float getSpriteSize() {
         return sprite.getWidth()/3;

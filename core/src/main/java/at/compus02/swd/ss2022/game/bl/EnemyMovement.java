@@ -14,15 +14,15 @@ public class EnemyMovement {
             System.out.println("hallo");
         }
 
-        Movement.moveObject((MoveableObject)enemy,xDirection);
-        Movement.moveObject((MoveableObject)enemy,yDirection);
+        Movement.getInstance().moveObject((MoveableObject)enemy,xDirection);
+        Movement.getInstance().moveObject((MoveableObject)enemy,yDirection);
     }
 
     public static void MoveDummyEnemy(GameObject enemy){
 
         MoveableObject moveableObject = (MoveableObject)enemy;
 
-        Movement.moveObject(moveableObject,Direction.RIGHT);
+        Movement.getInstance().moveObject(moveableObject,Direction.RIGHT);
 
     }
 }

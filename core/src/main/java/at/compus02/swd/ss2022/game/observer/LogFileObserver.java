@@ -1,5 +1,8 @@
 package at.compus02.swd.ss2022.game.observer;
 
+import at.compus02.swd.ss2022.game.gameobjects.MoveableGameObjects;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
+import at.compus02.swd.ss2022.game.movement.Direction;
 import at.compus02.swd.ss2022.game.observer.enums.GameLogLevel;
 import at.compus02.swd.ss2022.game.observer.interfaces.GameObserver;
 
@@ -7,13 +10,14 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Locale;
 
 public class LogFileObserver implements GameObserver
 {
     //Defined or fixed values;
-    private static final LogFileObserver logFileObserver = new LogFileObserver();
-    private final String PLAY_ACTION_SUCCESS = "Player moved";
-    private final String PLAY_ACTION_FAIL = "Player did not move";
+    private static LogFileObserver logFileObserver;
+    private final String PLAY_ACTION_SUCCESS = "moved ";
+    private final String PLAY_ACTION_FAIL = "did not move ";
     private final String path;
     private BufferedWriter writer;
 
@@ -31,54 +35,40 @@ public class LogFileObserver implements GameObserver
         }
     }
 
-    public static LogFileObserver getInstance() {return logFileObserver;}
+    public static LogFileObserver getInstance() {
+       if(logFileObserver == null)
+           logFileObserver = new LogFileObserver();
 
-    @Override
-    public void onPlayerMovedUp(boolean successful)
-    {
-        if(successful)
-            writeLogEntry(buildMessage(GameLogLevel.INFO.toString(), PLAY_ACTION_SUCCESS + " up"));
-        else
-            writeLogEntry(buildMessage(GameLogLevel.WARNING.toString(), PLAY_ACTION_FAIL + " up"));
+        return logFileObserver;
     }
 
     @Override
-    public void onPlayerMovedDown(boolean successful)
+    public void onObjectMoved(boolean successful, Direction direction, MoveableObject moveableObject)
     {
         if(successful)
-            writeLogEntry(buildMessage(GameLogLevel.INFO.toString(), PLAY_ACTION_SUCCESS + " down"));
+            writeLogEntry(buildMessage(GameLogLevel.INFO.toString(),PLAY_ACTION_SUCCESS, direction, moveableObject));
         else
-            writeLogEntry(buildMessage(GameLogLevel.WARNING.toString(), PLAY_ACTION_FAIL + " down"));
+            writeLogEntry(buildMessage(GameLogLevel.INFO.toString(),PLAY_ACTION_FAIL, direction, moveableObject));
     }
 
     @Override
-    public void onPlayerMovedRight(boolean successful)
+    public void onHitEnemy(MoveableObject moveableObject)
     {
-        if(successful)
-            writeLogEntry(buildMessage(GameLogLevel.INFO.toString(), PLAY_ACTION_SUCCESS + " right"));
-        else
-            writeLogEntry(buildMessage(GameLogLevel.WARNING.toString(), PLAY_ACTION_FAIL + " right"));
-    }
 
-    @Override
-    public void onPlayerMovedLeft(boolean successful)
-    {
-        if(successful)
-            writeLogEntry(buildMessage(GameLogLevel.INFO.toString(), PLAY_ACTION_SUCCESS + " left"));
-        else
-            writeLogEntry(buildMessage(GameLogLevel.WARNING.toString(), PLAY_ACTION_FAIL + " left"));
-    }
-
-    @Override
-    public void onError(String message)
-    {
-        writeLogEntry(buildMessage(GameLogLevel.ERROR.toString(), message));
     }
 
     @Override
     public void atGameStart(String message)
     {
         writeLogEntry(buildMessage(GameLogLevel.INFO.toString(), message));
+    }
+
+    private String buildMessage(String logLevel, String message, Direction direction, MoveableObject moveableObject)
+    {
+        Date date = new Date();
+
+        return date.toString() + " | " + logLevel + " | " + moveableObject.getGameObjectType().toString() + " " + message
+                + direction.toString().toLowerCase(Locale.ROOT) + "!";
     }
 
     private String buildMessage(String logLevel, String message)

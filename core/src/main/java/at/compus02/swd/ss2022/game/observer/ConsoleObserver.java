@@ -1,60 +1,42 @@
 package at.compus02.swd.ss2022.game.observer;
 
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
+import at.compus02.swd.ss2022.game.movement.Direction;
 import at.compus02.swd.ss2022.game.observer.interfaces.GameObserver;
 
 
 import java.util.Date;
+import java.util.Locale;
 
 public class ConsoleObserver implements GameObserver
 {
     //Defined or fixed values;
-    private final String PLAY_ACTION_SUCCESS = "Player moved";
-    private final String PLAY_ACTION_FAIL = "Player did not move";
-    private static ConsoleObserver consoleObserver = new ConsoleObserver();
+    private final String PLAY_ACTION_SUCCESS = "moved ";
+    private final String PLAY_ACTION_FAIL = "did not move ";
+    private static ConsoleObserver consoleObserver;
     private ConsoleObserver(){}
 
-    public static ConsoleObserver getInstance(){return consoleObserver;}
+    public static ConsoleObserver getInstance()
+    {
+        if(consoleObserver == null)
+            consoleObserver = new ConsoleObserver();
+        return consoleObserver;
+    }
+
 
     @Override
-    public void onPlayerMovedUp(boolean successful)
+    public void onObjectMoved(boolean successful, Direction direction, MoveableObject moveableObject)
     {
         if(successful)
-            System.out.println(buildMessage(PLAY_ACTION_SUCCESS + " up"));
+            System.out.println(buildMessage(PLAY_ACTION_SUCCESS, direction, moveableObject));
         else
-            System.out.println(buildMessage(PLAY_ACTION_FAIL + " up"));
+            System.out.println(buildMessage(PLAY_ACTION_FAIL, direction, moveableObject));
     }
 
     @Override
-    public void onPlayerMovedDown(boolean successful)
+    public void onHitEnemy(MoveableObject moveableObject)
     {
-        if(successful)
-            System.out.println(buildMessage(PLAY_ACTION_SUCCESS + " down"));
-        else
-            System.out.println(buildMessage(PLAY_ACTION_FAIL + " down"));
-    }
-
-    @Override
-    public void onPlayerMovedRight(boolean successful)
-    {
-        if(successful)
-            System.out.println(buildMessage(PLAY_ACTION_SUCCESS + " right"));
-        else
-            System.out.println(buildMessage(PLAY_ACTION_FAIL + " right"));
-    }
-
-    @Override
-    public void onPlayerMovedLeft(boolean successful)
-    {
-        if(successful)
-            System.out.println(buildMessage(PLAY_ACTION_SUCCESS + " left"));
-        else
-            System.out.println(buildMessage(PLAY_ACTION_FAIL + " left"));
-    }
-
-    @Override
-    public void onError(String message)
-    {
-        System.out.println(buildMessage(message));
+        System.out.println("Player hit " + moveableObject.getGameObjectType().toString());
     }
 
     @Override
@@ -68,5 +50,13 @@ public class ConsoleObserver implements GameObserver
         Date date = new Date();
 
         return date.toString() + " - " + message;
+    }
+
+    private String buildMessage(String message, Direction direction, MoveableObject moveableObject)
+    {
+        Date date = new Date();
+
+        return date.toString() + " | " + moveableObject.getGameObjectType().toString() + " " + message
+                + direction.toString().toLowerCase(Locale.ROOT) + "!";
     }
 }

@@ -13,6 +13,6 @@ public class MoveDownCommand implements ICommand {
 
     @Override
     public void execute() {
-        Movement.moveObject(object, Direction.DOWN);
+        Movement.getInstance().moveObject(object, Direction.DOWN);
     }
 }
