@@ -15,10 +15,9 @@ public class EnemyMovement {
     }
 
     public static void moveDummyEnemy(GameObject enemy){
-
-        //TODO
-        MoveableObject moveableObject = (MoveableObject)enemy;
-        Movement.getInstance().moveObject(moveableObject,Direction.RIGHT);
-
+        Direction xDirection = (Math.floor(Math.random() * 2) + 1) == 1 ? Direction.RIGHT : Direction.LEFT;
+        Direction yDirection = (Math.floor(Math.random() * 2) + 1) == 1 ? Direction.UP : Direction.DOWN;
+        Movement.getInstance().moveObject((MoveableObject)enemy,xDirection);
+        Movement.getInstance().moveObject((MoveableObject)enemy,yDirection);
     }
 }
