@@ -1,14 +1,10 @@
 package at.compus02.swd.ss2022.game.observer;
 
-import at.compus02.swd.ss2022.game.bl.EnemyControl;
-import at.compus02.swd.ss2022.game.bl.EnemyMovement;
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
+import at.compus02.swd.ss2022.game.bl.MovableObjectControl;
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
 import at.compus02.swd.ss2022.game.movement.Direction;
 import at.compus02.swd.ss2022.game.observer.interfaces.GameObserver;
 
-import java.util.Date;
-import java.util.Locale;
 import java.util.Random;
 
 public class EnemyObserver implements GameObserver
@@ -30,15 +26,18 @@ public class EnemyObserver implements GameObserver
     public void onObjectMoved(boolean successful, Direction direction, MoveableObject moveableObject)
     {
         //Tell All Enemies that the player has moved
-        for (MoveableObject enemy : EnemyControl.getInstance().getEnemies())
+        /*
+        for (MoveableObject enemy : MoveableObjectControl.getInstance().getEnemies())
         {
             //Randomly move to or away from player
             if(bMoveToPlayer())
-                EnemyMovement.MoveDummyEnemy((GameObject) enemy);
+                EnemyMovement.moveDummyEnemy((GameObject) enemy);
             //else
                 //EnemyMovement.MoveEnemyToPlayer((GameObject) enemy, player?);
         }
-        EnemyControl.getInstance().getEnemies();
+        MoveableObjectControl.getInstance().getEnemies();
+
+         */
     }
 
     @Override
@@ -50,7 +49,7 @@ public class EnemyObserver implements GameObserver
     @Override
     public void atGameStart(String message)
     {
-        System.out.println(EnemyControl.getInstance().getEnemies().size() + " enemies generated");
+        System.out.println(MovableObjectControl.getInstance().getEnemies().size() + " enemies generated");
     }
 
 

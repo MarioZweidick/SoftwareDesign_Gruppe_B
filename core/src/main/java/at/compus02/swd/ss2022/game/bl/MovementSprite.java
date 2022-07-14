@@ -42,4 +42,11 @@ public class MovementSprite {
         Sprite tmp = new Sprite(image);
         object.setSprite(tmp);
     }
+
+    public static void setObjectInvisible(MoveableObject object){
+        object.setPosition(100,100);
+        Texture image = AssetRepository.getInstance().getTexture(Tile.Gras);
+        Sprite tmp = new Sprite(image);
+        object.setSprite(tmp);
+    }
 }

@@ -49,14 +49,14 @@ public class ConsoleObserver implements GameObserver
     {
         Date date = new Date();
 
-        return date.toString() + " - " + message;
+        return date + " - " + message;
     }
 
     private String buildMessage(String message, Direction direction, MoveableObject moveableObject)
     {
         Date date = new Date();
 
-        return date.toString() + " | " + moveableObject.getGameObjectType().toString() + " " + message
+        return date + " | " + moveableObject.getGameObjectType().toString() + " " + message
                 + direction.toString().toLowerCase(Locale.ROOT) + "!";
     }
 }

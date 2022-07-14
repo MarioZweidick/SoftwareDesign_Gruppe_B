@@ -1,19 +1,17 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.IFighting;
-import at.compus02.swd.ss2022.game.repository.AssetRepository;
-import at.compus02.swd.ss2022.game.repository.Tile;
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.Fighting;
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
 import at.compus02.swd.ss2022.game.movement.Direction;
+import at.compus02.swd.ss2022.game.repository.AssetRepository;
+import at.compus02.swd.ss2022.game.repository.Tile;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Character implements GameObject, MoveableObject, IFighting {
+public class Character implements MoveableObject, Fighting {
     private Sprite sprite;
     private Direction direction;
-    private AssetRepository repository;
     private float health;
     private float attackstrength;
 
@@ -21,7 +19,6 @@ public class Character implements GameObject, MoveableObject, IFighting {
         Texture image = AssetRepository.getInstance().getTexture(Tile.CharacterDown);
         sprite = new Sprite(image);
         direction = Direction.DOWN;
-        repository = AssetRepository.getInstance();
     }
     @Override
     public void act(float delta) {
@@ -29,7 +26,7 @@ public class Character implements GameObject, MoveableObject, IFighting {
     }
     @Override
     public float getSpriteSize() {
-        return this.sprite.getWidth()/3;
+        return this.sprite.getWidth()/2;
     }
     @Override
     public void setPosition(float x, float y) {
@@ -44,8 +41,8 @@ public class Character implements GameObject, MoveableObject, IFighting {
     @Override
     public void setDirection(Direction direction) {this.direction = direction;}
     @Override
-    public MoveableGameObjects getGameObjectType() {
-        return MoveableGameObjects.Character;
+    public MovableGameObjects getGameObjectType() {
+        return MovableGameObjects.Character;
     }
 
     @Override

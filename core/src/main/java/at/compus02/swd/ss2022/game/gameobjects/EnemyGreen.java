@@ -1,34 +1,27 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
 
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.Fighting;
 import at.compus02.swd.ss2022.game.repository.AssetRepository;
 import at.compus02.swd.ss2022.game.repository.Tile;
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
 import at.compus02.swd.ss2022.game.movement.Direction;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class EnemyGreen implements GameObject, MoveableObject
+public class EnemyGreen implements MoveableObject, Fighting
 {
     private Sprite sprite;
     private Direction direction;
-    private int livePoints;
+    private float health;
+    private float attackstrength;
+
 
     public EnemyGreen(){
         Texture image = AssetRepository.getInstance().getTexture(Tile.EnemyGreenDown);
         sprite = new Sprite(image);
         direction = Direction.DOWN;
-        this.livePoints = 100;
-    }
-
-    public void decreaseLivePoints(int value) {livePoints -= value;}
-
-
-    public int getLivePoints()
-    {
-        return livePoints;
     }
 
     @Override
@@ -43,7 +36,7 @@ public class EnemyGreen implements GameObject, MoveableObject
     public Direction getDirection() {return direction; }
 
     @Override
-    public MoveableGameObjects getGameObjectType() {return MoveableGameObjects.EnemyGreen;}
+    public MovableGameObjects getGameObjectType() {return MovableGameObjects.EnemyGreen;}
 
     @Override
     public void setSprite(Sprite sprite) {
@@ -88,4 +81,13 @@ public class EnemyGreen implements GameObject, MoveableObject
     public boolean isAccessible() {
         return false;
     }
+
+    @Override
+    public float getHealth() {return this.health;}
+    @Override
+    public void setHealth(float health) {this.health = health;}
+    @Override
+    public float getAttackstrength() {return attackstrength;}
+    @Override
+    public void setAttackstrength(float strength) {attackstrength = strength;}
 }

@@ -1,12 +1,11 @@
 package at.compus02.swd.ss2022.game.factories;
 
-import at.compus02.swd.ss2022.game.bl.EnemyControl;
-import at.compus02.swd.ss2022.game.bl.Moveable;
+import at.compus02.swd.ss2022.game.bl.MovableObjectControl;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.Fighting;
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObjectFactory;
 import at.compus02.swd.ss2022.game.gameobjects.EnemyGreen;
 import at.compus02.swd.ss2022.game.gameobjects.EnemyRed;
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.IFighting;
 import com.badlogic.gdx.utils.Array;
 
 public class EnemyFactory implements GameObjectFactory {
@@ -19,21 +18,16 @@ public class EnemyFactory implements GameObjectFactory {
     public Array<GameObject> createStartObjects(int numberOfTiles) {
         EnemyRed enemyRed = createEnemyRed();
         enemyRed.setPosition(100,100);
-        //((IFighting)enemyRed).setHealth(50);
-        //((IFighting)enemyRed).setAttackstrength(10);
-
-
+        ((Fighting)enemyRed).setHealth(150);
+        ((Fighting)enemyRed).setAttackstrength(10);
 
         EnemyGreen enemyGreen = createEnemyGreen();
         enemyGreen.setPosition(-150,-100);
-        //((IFighting)enemyGreen).setHealth(100);
-        //((IFighting)enemyGreen).setAttackstrength(100);
-
+        ((Fighting)enemyGreen).setHealth(100);
+        ((Fighting)enemyGreen).setAttackstrength(100);
 
         enemies.add(enemyGreen,enemyRed);
-        Moveable.setNoneStandOnObjectsForPlayer(enemies);
-
-        EnemyControl.getInstance().registerEnemies(enemies);
+        MovableObjectControl.getInstance().registerEnemies(enemies);
 
         return enemies;
     }

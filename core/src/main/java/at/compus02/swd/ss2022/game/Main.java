@@ -39,15 +39,11 @@ public class Main extends ApplicationAdapter {
 
 		//Build enemies
 		EnemyFactory enemyFactory = new EnemyFactory();
-		Array<GameObject> enemies = enemyFactory.createStartObjects(0);
-		gameObjects.addAll(enemies);
+		gameObjects.addAll(enemyFactory.createStartObjects(0));
 
 		//Build player
 		PlayerFactory playerFactory = new PlayerFactory();
-		Array player = playerFactory.createStartObjects(0);
-		Gdx.input.setInputProcessor(new GameInput((MoveableObject)player.first(),enemies));
-
-		gameObjects.addAll(player);
+		gameObjects.addAll(playerFactory.createStartObjects(0));
 
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);

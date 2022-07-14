@@ -1,16 +1,10 @@
 package at.compus02.swd.ss2022.game.commands;
 
-import at.compus02.swd.ss2022.game.factories.interfaces.ICommand;
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
+import at.compus02.swd.ss2022.game.bl.MovableObjectControl;
+import at.compus02.swd.ss2022.game.factories.interfaces.Command;
 
-public class HitCommand implements ICommand {
-
-    private MoveableObject object;
-    public HitCommand(MoveableObject object) {
-        this.object = object;
-    }
+public class HitCommand implements Command {
     @Override
     public void execute() {
-
-    }
+        MovableObjectControl.getInstance().hit();}
 }

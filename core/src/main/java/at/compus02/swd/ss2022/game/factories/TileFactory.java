@@ -1,6 +1,6 @@
 package at.compus02.swd.ss2022.game.factories;
 
-import at.compus02.swd.ss2022.game.bl.Moveable;
+import at.compus02.swd.ss2022.game.bl.Movable;
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObjectFactory;
 import at.compus02.swd.ss2022.game.gameobjects.*;
@@ -19,7 +19,7 @@ public class TileFactory implements GameObjectFactory
     {
         return new Bush();
     }
-    private GameObject createTulpisTile()
+    private GameObject createTulipsTile()
     {
         return new Tulips();
     }
@@ -54,9 +54,9 @@ public class TileFactory implements GameObjectFactory
         gameTiles.addAll(createJettyObjects(103, 3));
         gameTiles.addAll(createBridgeObjects(20, -10));
         gameTiles.add(createHouse(-148,85));
-        gameTiles.addAll(createTulpis());
+        gameTiles.addAll(createTulips());
 
-        Moveable.setNoneMoveableObjects(gameTiles);
+        Movable.setNoneMovableObjects(gameTiles);
 
         gameTiles.addAll(createBush());
         gameTiles.addAll(createBush());
@@ -123,11 +123,11 @@ public class TileFactory implements GameObjectFactory
         int x=-162;
         for (int i=0;i<5;i++)
         {
-            GameObject bush= new Bush();
+            GameObject bush= createBushTile();
             bush.setPosition(x, -130);
             bushTiles.add(bush);
 
-            GameObject bush2= new Bush();
+            GameObject bush2= createBushTile();
             bush2.setPosition(x, 162);
             bushTiles.add(bush2);
 
@@ -143,21 +143,21 @@ public class TileFactory implements GameObjectFactory
         return houseTile;
     }
 
-    private Array<GameObject> createTulpis()
+    private Array<GameObject> createTulips()
     {
-        Array<GameObject> tulpisTiles = new Array<>();
+        Array<GameObject> tulipsTiles = new Array<>();
         int x=-125;
         for (int i=0;i<5;i++)
         {
-            GameObject bush= new Tulips();
+            GameObject bush= createTulipsTile();
             bush.setPosition(x, -125);
-            tulpisTiles.add(bush);
+            tulipsTiles.add(bush);
 
-            GameObject bush2= new Tulips();
+            GameObject bush2= createTulipsTile();
             bush2.setPosition(x, 165);
-            tulpisTiles.add(bush2);
+            tulipsTiles.add(bush2);
             x=x+64;
         }
-        return tulpisTiles;
+        return tulipsTiles;
     }
 }

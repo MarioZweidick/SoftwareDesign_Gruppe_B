@@ -1,6 +1,7 @@
 package at.compus02.swd.ss2022.game.gameobjects;
 
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
+
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.Fighting;
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
 import at.compus02.swd.ss2022.game.movement.Direction;
 import at.compus02.swd.ss2022.game.repository.AssetRepository;
@@ -9,22 +10,22 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class EnemyRed implements GameObject, MoveableObject
+public class EnemyRed implements MoveableObject, Fighting
 {
     private Sprite sprite;
     private Direction direction;
-    private int livePoints;
+    private float health;
+    private float attackstrength;
 
     public EnemyRed(){
         Texture image = AssetRepository.getInstance().getTexture(Tile.EnemyRedDown);
         sprite = new Sprite(image);
         direction = Direction.DOWN;
-        this.livePoints = 300;
     }
 
     @Override
     public float getSpriteSize() {
-        return sprite.getWidth()/3;
+        return sprite.getWidth()/4;
     }
 
     @Override
@@ -34,7 +35,7 @@ public class EnemyRed implements GameObject, MoveableObject
     public Direction getDirection() {return direction; }
 
     @Override
-    public MoveableGameObjects getGameObjectType() {return MoveableGameObjects.EnemyRed;}
+    public MovableGameObjects getGameObjectType() {return MovableGameObjects.EnemyRed;}
 
     @Override
     public void setSprite(Sprite sprite) {
@@ -42,12 +43,6 @@ public class EnemyRed implements GameObject, MoveableObject
         this.sprite= sprite;
     }
 
-    public void decreaseLivePoints(int value) {livePoints -= value;}
-
-    public int getLivePoints()
-    {
-        return livePoints;
-    }
 
     @Override
     public void setPosition(float x, float y) {
@@ -86,4 +81,14 @@ public class EnemyRed implements GameObject, MoveableObject
     public boolean isAccessible() {
         return false;
     }
+
+
+    @Override
+    public float getHealth() {return this.health;}
+    @Override
+    public void setHealth(float health) {this.health = health;}
+    @Override
+    public float getAttackstrength() {return attackstrength;}
+    @Override
+    public void setAttackstrength(float strength) {attackstrength = strength;}
 }

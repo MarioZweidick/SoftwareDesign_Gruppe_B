@@ -6,5 +6,5 @@ import com.badlogic.gdx.utils.Array;
 
 public interface GameObjectFactory
 {
-    public abstract Array<GameObject> createStartObjects(int numberOfTiles);
+    Array<GameObject> createStartObjects(int numberOfTiles);
 }

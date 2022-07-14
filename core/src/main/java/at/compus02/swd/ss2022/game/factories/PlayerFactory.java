@@ -1,10 +1,12 @@
 package at.compus02.swd.ss2022.game.factories;
 
-import at.compus02.swd.ss2022.game.bl.Moveable;
+import at.compus02.swd.ss2022.game.bl.MovableObjectControl;
 import at.compus02.swd.ss2022.game.factories.interfaces.GameObjectFactory;
 import at.compus02.swd.ss2022.game.gameobjects.Character;
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.IFighting;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.Fighting;
+import at.compus02.swd.ss2022.game.input.GameInput;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Array;
 
 public class PlayerFactory implements GameObjectFactory {
@@ -18,11 +20,13 @@ public class PlayerFactory implements GameObjectFactory {
     {
         GameObject player= createPlayer();
         player.setPosition(50,100);
-        ((IFighting)player).setHealth(100);
-        ((IFighting)player).setAttackstrength(100);
+        ((Fighting)player).setHealth(100);
+        ((Fighting)player).setAttackstrength(100);
 
+        MovableObjectControl.getInstance().registerPlayer(player);
+
+        Gdx.input.setInputProcessor(new GameInput());
         gameTiles.add(player);
-        Moveable.setNoneMoveableObjects(gameTiles);
         return gameTiles;
     }
 }
