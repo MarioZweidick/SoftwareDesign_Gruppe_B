@@ -2,7 +2,7 @@ package at.compus02.swd.ss2022.game.gameobjects;
 
 
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.Fighting;
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.MovableObject;
 import at.compus02.swd.ss2022.game.movement.Direction;
 import at.compus02.swd.ss2022.game.repository.AssetRepository;
 import at.compus02.swd.ss2022.game.repository.Tile;
@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class EnemyRed implements MoveableObject, Fighting
+public class EnemyRed implements MovableObject, Fighting
 {
     private Sprite sprite;
     private Direction direction;

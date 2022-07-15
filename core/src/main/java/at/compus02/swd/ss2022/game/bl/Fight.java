@@ -1,32 +1,27 @@
 package at.compus02.swd.ss2022.game.bl;
 
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.Fighting;
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
-import at.compus02.swd.ss2022.game.repository.Pair;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.MovableObject;
+import at.compus02.swd.ss2022.game.music.Sounds;
 
 public class Fight {
 
-    public static void fightEnemy(MoveableObject player){
+    public static void fightEnemy(Fighting player, Fighting enemy){
 
-        Pair<Float,Float> nextPositions = Movement.getInstance().getNextXYPosition(player, player.getDirection());
-        Fighting enemy = (Fighting) Movable.getMovableObjectAt(nextPositions.getFirst(),nextPositions.getSecond());
-
-        if(enemy == null){
-            return;
-        }
-        float health = enemy.getHealth()-((Fighting)player).getAttackstrength();
+        float health = enemy.getHealth()-(player).getAttackstrength();
         if( health> 0 ){
-            enemy.setHealth(Math.min(health,0));
+            enemy.setHealth(health);
         }
         else {
-            MovementSprite.setObjectInvisible((MoveableObject) enemy);
-            defeatedEnemy((MoveableObject) enemy);
+            enemy.setHealth(0);
+            MusicControl.getInstance().playSound(Sounds.Enemydefeated);
+            MovementSprite.setObjectInvisible((MovableObject) enemy);
+            defeatedEnemy((MovableObject) enemy);
         }
     }
 
-    public static void defeatedEnemy(MoveableObject enemy){
+    public static void defeatedEnemy(MovableObject enemy){
         Movable.removeNoneStandOnObjectsForPlayer(enemy);
         MovableObjectControl.getInstance().enemyDefeated(enemy);
     }
-
 }

@@ -1,12 +1,14 @@
 package at.compus02.swd.ss2022.game;
 
+import at.compus02.swd.ss2022.game.bl.MovableObjectControl;
+import at.compus02.swd.ss2022.game.bl.MusicControl;
 import at.compus02.swd.ss2022.game.factories.EnemyFactory;
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
-import at.compus02.swd.ss2022.game.input.GameInput;
+import at.compus02.swd.ss2022.game.music.MusicPlayer;
 import at.compus02.swd.ss2022.game.repository.AssetRepository;
 import at.compus02.swd.ss2022.game.factories.PlayerFactory;
 import at.compus02.swd.ss2022.game.factories.TileFactory;
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
+import at.compus02.swd.ss2022.game.repository.MusicRepository;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -31,7 +33,12 @@ public class Main extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
 		//Texturen laden
-		AssetRepository.getInstance().preloadAssets();
+		AssetRepository.getInstance().preload();
+
+		//Sounds laden
+		MusicRepository.getInstance().preload();
+
+		MusicControl.getInstance().startGame();
 
 		//Build background
 		TileFactory tileFactory = new TileFactory();
@@ -80,7 +87,9 @@ public class Main extends ApplicationAdapter {
 
 	@Override
 	public void dispose() {
+		MovableObjectControl.getInstance().dispose();
 		AssetRepository.getInstance().dispose();
+		MusicRepository.getInstance().dispose();
 		batch.dispose();
 	}
 

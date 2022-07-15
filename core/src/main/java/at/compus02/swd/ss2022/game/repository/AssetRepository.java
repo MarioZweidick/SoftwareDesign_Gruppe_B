@@ -3,13 +3,14 @@ package at.compus02.swd.ss2022.game.repository;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
 
-public class AssetRepository {
+public class AssetRepository implements Repository {
     private static final AssetRepository repository = new AssetRepository();
     private Array<Pair<Tile,Texture>> textures = new Array<>();
     private AssetRepository(){}
 
     public static AssetRepository getInstance() {return repository;}
-    public void preloadAssets(){
+    @Override
+    public void preload() {
         textures.add(new Pair<>(Tile.Bridge, new Texture("tile_bridge.png")));
         textures.add(new Pair<>(Tile.Bush, new Texture("tile_bush.png")));
         textures.add(new Pair<>(Tile.House, new Texture("tile_house.png")));
@@ -35,6 +36,7 @@ public class AssetRepository {
         textures.add(new Pair<>(Tile.EnemyGreenLeft, new Texture("monster2/monster2Left.png")));
         textures.add(new Pair<>(Tile.EnemyGreenRight, new Texture("monster2/monster2Right.png")));
     }
+
     public Texture getTexture(Tile texture){
         for (Pair<Tile, Texture> texturePair : textures) {
             if(texturePair.getFirst() == texture){
@@ -43,13 +45,15 @@ public class AssetRepository {
         }
         return null;
     }
-    public void dispose(){
+
+    @Override
+    public void dispose() {
         textures.forEach(n ->
-            {
-                //texture dispose
-                n.getSecond().dispose();
-                n.dispose();
-            });
+        {
+            //texture dispose
+            n.getSecond().dispose();
+            n.dispose();
+        });
         textures = null;
     }
 }

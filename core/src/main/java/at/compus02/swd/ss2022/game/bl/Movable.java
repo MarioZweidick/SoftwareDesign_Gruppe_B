@@ -2,7 +2,7 @@ package at.compus02.swd.ss2022.game.bl;
 
 import at.compus02.swd.ss2022.game.gameobjects.interfaces.GameObject;
 import at.compus02.swd.ss2022.game.gameobjects.MovableGameObjects;
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.MovableObject;
 import com.badlogic.gdx.utils.Array;
 
 public class Movable {
@@ -25,22 +25,14 @@ public class Movable {
 
     public static boolean canMove(float nextXPosition, float nextYPosition, MovableGameObjects objectType){
         boolean canMove;
-        System.out.println("nextXPosition: "+nextXPosition+" nextYPosition "+nextYPosition);
 
-        if(noneMovableObjects == null){
+        if(noneMovableObjects.isEmpty()){
             return true;
         }
         if(!checkBorder(nextXPosition, nextYPosition))
         {
             return false;
         }
-        //TODO
-        /*
-        if(nextYPosition > -10 && nextYPosition <= 75){
-            return false;
-        }
-        */
-
 
         //Prüft, ob der Player einen Gegner überdeckt.
         //Falls ja, darf der Player sich nicht dorthin bewegen.
@@ -67,10 +59,6 @@ public class Movable {
             if((x<=nextX && nextX <= width) &&
                     (y<=nextY && nextY <= height))
             {
-                System.out.println("Position x:"+x+" Position y:"+y);
-                System.out.println("Position x:"+width+" Position y:"+height);
-                System.out.println("---------------");
-
                 canMove = noneMovableObject.isAccessible();
             }
         }
@@ -82,7 +70,7 @@ public class Movable {
                 (yPosition > -140 && yPosition <= 180);
     }
 
-    public static MoveableObject getMovableObjectAt(float xPosition, float yPosition){
+    public static MovableObject getMovableObjectAt(float xPosition, float yPosition){
 
         for (GameObject noneMovableObject : noneStandOnObjectsForPlayer) {
             float x = noneMovableObject.getXPosition()-10;
@@ -93,7 +81,7 @@ public class Movable {
             if((x<=xPosition && xPosition <= width) &&
                     (y<=yPosition && yPosition <= height))
             {
-                return (MoveableObject) noneMovableObject;
+                return (MovableObject) noneMovableObject;
             }
         }
         return null;

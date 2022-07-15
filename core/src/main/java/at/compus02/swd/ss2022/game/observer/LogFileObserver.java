@@ -1,6 +1,7 @@
 package at.compus02.swd.ss2022.game.observer;
 
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.Fighting;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.MovableObject;
 import at.compus02.swd.ss2022.game.movement.Direction;
 import at.compus02.swd.ss2022.game.observer.enums.GameLogLevel;
 import at.compus02.swd.ss2022.game.observer.interfaces.GameObserver;
@@ -42,39 +43,48 @@ public class LogFileObserver implements GameObserver
     }
 
     @Override
-    public void onObjectMoved(boolean successful, Direction direction, MoveableObject moveableObject)
+    public void onObjectMoved(boolean successful, Direction direction, MovableObject movableObject)
     {
         if(successful)
-            writeLogEntry(buildMessage(GameLogLevel.INFO.toString(),PLAY_ACTION_SUCCESS, direction, moveableObject));
+            writeLogEntry(buildMessage(GameLogLevel.INFO,PLAY_ACTION_SUCCESS, direction, movableObject));
         else
-            writeLogEntry(buildMessage(GameLogLevel.INFO.toString(),PLAY_ACTION_FAIL, direction, moveableObject));
+            writeLogEntry(buildMessage(GameLogLevel.INFO,PLAY_ACTION_FAIL, direction, movableObject));
     }
 
     @Override
-    public void onHitEnemy(MoveableObject moveableObject)
+    public void onHitEnemy(MovableObject enemy)
     {
+        String output;
+        if(enemy == null){
+            output ="Player doesn't hit a enemy";
+        }
+        else {
+            output = "Player hit " + enemy.getGameObjectType().toString()+". ";
+            output += "Enemy health: "+((Fighting)enemy).getHealth();
 
+        }
+        writeLogEntry(buildMessage(GameLogLevel.INFO,output));
     }
 
     @Override
     public void atGameStart(String message)
     {
-        writeLogEntry(buildMessage(GameLogLevel.INFO.toString(), message));
+        writeLogEntry(buildMessage(GameLogLevel.INFO, message));
     }
 
-    private String buildMessage(String logLevel, String message, Direction direction, MoveableObject moveableObject)
+    private String buildMessage(GameLogLevel logLevel, String message, Direction direction, MovableObject movableObject)
     {
         Date date = new Date();
 
-        return date.toString() + " | " + logLevel + " | " + moveableObject.getGameObjectType().toString() + " " + message
+        return date.toString() + " | " + logLevel.toString() + " | " + movableObject.getGameObjectType().toString() + " " + message
                 + direction.toString().toLowerCase(Locale.ROOT) + "!";
     }
 
-    private String buildMessage(String logLevel, String message)
+    private String buildMessage(GameLogLevel logLevel, String message)
     {
         Date date = new Date();
 
-        return date.toString() + " | " + logLevel + " | " + message;
+        return date.toString() + " | " + logLevel.toString() + " | " + message;
     }
 
     private void writeLogEntry(String builtMessage)

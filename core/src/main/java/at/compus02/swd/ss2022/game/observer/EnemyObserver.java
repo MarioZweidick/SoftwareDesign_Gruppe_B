@@ -1,7 +1,7 @@
 package at.compus02.swd.ss2022.game.observer;
 
 import at.compus02.swd.ss2022.game.bl.MovableObjectControl;
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.MovableObject;
 import at.compus02.swd.ss2022.game.movement.Direction;
 import at.compus02.swd.ss2022.game.observer.interfaces.GameObserver;
 
@@ -23,7 +23,7 @@ public class EnemyObserver implements GameObserver
     }
 
     @Override
-    public void onObjectMoved(boolean successful, Direction direction, MoveableObject moveableObject)
+    public void onObjectMoved(boolean successful, Direction direction, MovableObject movableObject)
     {
         //Tell All Enemies that the player has moved
         /*
@@ -41,7 +41,7 @@ public class EnemyObserver implements GameObserver
     }
 
     @Override
-    public void onHitEnemy(MoveableObject moveableObject)
+    public void onHitEnemy(MovableObject movableObject)
     {
         //Deduct live points by X points!
     }
@@ -60,7 +60,7 @@ public class EnemyObserver implements GameObserver
         return random.nextBoolean();
     }
 
-    private boolean bIsEnemyDead(MoveableObject moveableObject)
+    private boolean bIsEnemyDead(MovableObject movableObject)
     {
         //If Enemy.getLivePoints == Dead....remove from static EnemyList
         return true;

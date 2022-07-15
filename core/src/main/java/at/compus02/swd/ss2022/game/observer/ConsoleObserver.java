@@ -1,7 +1,9 @@
 package at.compus02.swd.ss2022.game.observer;
 
-import at.compus02.swd.ss2022.game.gameobjects.interfaces.MoveableObject;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.Fighting;
+import at.compus02.swd.ss2022.game.gameobjects.interfaces.MovableObject;
 import at.compus02.swd.ss2022.game.movement.Direction;
+import at.compus02.swd.ss2022.game.observer.enums.GameLogLevel;
 import at.compus02.swd.ss2022.game.observer.interfaces.GameObserver;
 
 
@@ -25,18 +27,25 @@ public class ConsoleObserver implements GameObserver
 
 
     @Override
-    public void onObjectMoved(boolean successful, Direction direction, MoveableObject moveableObject)
+    public void onObjectMoved(boolean successful, Direction direction, MovableObject movableObject)
     {
         if(successful)
-            System.out.println(buildMessage(PLAY_ACTION_SUCCESS, direction, moveableObject));
+            System.out.println(buildMessage(PLAY_ACTION_SUCCESS, direction, movableObject));
         else
-            System.out.println(buildMessage(PLAY_ACTION_FAIL, direction, moveableObject));
+            System.out.println(buildMessage(PLAY_ACTION_FAIL, direction, movableObject));
     }
 
     @Override
-    public void onHitEnemy(MoveableObject moveableObject)
+    public void onHitEnemy(MovableObject movableObject)
     {
-        System.out.println("Player hit " + moveableObject.getGameObjectType().toString());
+        if(movableObject == null){
+            System.out.println("Player doesn't hit a enemy");
+        }
+        else {
+            String output = "Player hit " + movableObject.getGameObjectType().toString()+". ";
+            output += "Enemy health: "+((Fighting)movableObject).getHealth();
+            System.out.println(output);
+        }
     }
 
     @Override
@@ -47,16 +56,12 @@ public class ConsoleObserver implements GameObserver
 
     private String buildMessage(String message)
     {
-        Date date = new Date();
-
-        return date + " - " + message;
+        return GameLogLevel.INFO.toString() + " - " + message;
     }
 
-    private String buildMessage(String message, Direction direction, MoveableObject moveableObject)
+    private String buildMessage(String message, Direction direction, MovableObject movableObject)
     {
-        Date date = new Date();
-
-        return date + " | " + moveableObject.getGameObjectType().toString() + " " + message
+        return GameLogLevel.INFO + " | " + movableObject.getGameObjectType().toString() + " " + message
                 + direction.toString().toLowerCase(Locale.ROOT) + "!";
     }
 }
